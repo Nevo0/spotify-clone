@@ -10,8 +10,8 @@ You need to have docker installed on your system to run this project.
 ## Try it
 
 ```bash
-
-cd django-cms-quickstart
+git clone git@github.com:Nevo0/spotify-clone.git
+cd spotify-clone
 docker compose build web
 docker compose run web python manage.py migrate
 docker compose run web python manage.py createsuperuser
