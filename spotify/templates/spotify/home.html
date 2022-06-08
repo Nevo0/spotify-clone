@@ -1,0 +1,69 @@
+{% extends "main.html" %} {% block content %}
+
+<main class="songs">
+  <section class="hero-section text-center">
+    <div class="container container--narrow">
+      <div class="hero-section__box">
+        <h2>Search for <span>Song</span></h2>
+      </div>
+
+      <div class="hero-section__search">
+        <form
+          id="searchForm"
+          class="form"
+          action="{% url 'songs' %}"
+          method="get"
+        >
+          <div class="form__field">
+            <label for="formInput#search">Search By Songs </label>
+            <input
+              class="input input--text"
+              id="formInput#search"
+              type="text"
+              name="search_query"
+              placeholder="Search by Songs Title"
+              value="{{search_query}}"
+            />
+          </div>
+
+          <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+        </form>
+      </div>
+    </div>
+  </section>
+  <section class="container">
+    <div class="grid grid--three">
+      {% for song in songs %}
+      <div class="three--song">
+        <div class="column">
+          <div class="card" >
+            {% if song.imageUrl %}
+            <a href="{% url 'song' song.id %}" class="song"
+              ><img
+                class="song-img"
+                src="{{song.imageUrl}}"
+                alt="{{song.song_title}}" /></a
+            >{% endif %}
+            <div class="card-body">
+              <h1 class="card-title">
+                <a href="{% url 'song' song.id %}" class="song">
+                  {{song.song_title}}
+                </a>
+              </h1>
+
+              {% if song.author %}
+              <p class="singleSong_author">
+                Author:
+                <span>{{song.author}}</span>
+              </p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</main>
+
+{% endblock content %}
